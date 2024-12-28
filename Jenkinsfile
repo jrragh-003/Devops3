@@ -1,81 +1,30 @@
 pipeline {
-    agent any
-    stages {
-        stage('Pull Docker Image') {
-            steps {
-                script {
-                    powershell '''
-                    docker pull urmsandeep/ai-artistic-style-service:latest
-                    '''
-                }
-            }
-        }
-        stage('Print Working Directory') {
-            steps {
-                script {
-                    powershell '''
-                    Write-Output "Current working directory: $pwd"
-                    '''
-                }
-            }
-        }
-        stage('Run Tests') {
-            steps {
-                script {
-                    powershell '''
-                    # Start the container in detached mode
-                    docker run -d --name ai-artistic-style-service urmsandeep/ai-artistic-style-service:latest
-                    # Install pytest inside the running container
-                    docker exec ai-artistic-style-service pip install pytest
-                    # Run the tests
-                    docker exec ai-artistic-style-service pytest tests/
-                    # Stop and remove the container after testing
-                    docker stop ai-artistic-style-service
-                    docker rm ai-artistic-style-service
-                    '''
-                }
-            }
-        }
-        stage('Deploy Service') {
-            steps {
-                script {
-                    powershell '''
-                    docker-compose down
-                    docker-compose up -d
-                    '''
-                }
-            }
-        }
-        stage('Verify Deployment') {
-    steps {
-        script {
-            bat '''
-            ping 127.0.0.1 -n 6 > nul
-            if exist test.jpg (
-                curl -X POST http://127.0.0.1:5001/styleTransfer -F "image=@test.jpg" --output styled_output.jpg
-            ) else (
-                echo File "test.jpg" not found & exit /b 1
-            )
-            '''
-        }
-    }
-}
-
-        
-    }
-    post {
-        always {
-            script {
-                powershell '''
-                docker system prune -f
-                '''
-            }
-        }
-        success {
-            echo 'Pipeline executed successfully. The service is running and functional!'
-        }
-        failure {
-            echo 'Pipeline failed. Check logs for errors.'
-        }
-    }
-}
+       agent any
+       stages {
+           stage('Pull Docker Image') {
+               steps {
+                   sh 'docker pull urmsandeep/ai-artistic-style-service:latest'
+               }
+           }
+           stage('Run Tests') {
+               steps {
+                   sh 'docker run --rm -p 5001:5001 urmsandeep/ai-artistic-style-service pytest tests/'
+               }
+           }
+           stage('Deploy Service') {
+               steps {
+                   sh 'docker-compose down && docker-compose up -d'
+               }
+           }
+           stage('Verify Deployment') {
+               steps {
+                   sh 'curl -X POST http://127.0.0.1:5001/styleTransfer -F "image=@test.jpg" --output styled_output.jpg'
+               }
+           }
+       }
+       post {
+           always {
+               sh 'docker system prune -f'
+           }
+       }
+   }
