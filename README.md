@@ -1,1 +1,1 @@
-file:///home/ragh/Pictures/Screenshots/Screenshot%20from%202024-12-28%2014-19-26.png
+![Screenshot from 2024-10-24 12-44-46](https://github.com/user-attachments/assets/db55843f-5756-4d72-b94e-a91e27d79614)
