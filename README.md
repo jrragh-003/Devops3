@@ -1,1 +1,1 @@
-<iframe src="http://localhost:3000/d-solo/de89cepeqacjke/rate-process-cpu-seconds-total-1m?orgId=1&from=1735375277633&to=1735375577633&timezone=browser&panelId=3&__feature.dashboardSceneSolo" width="450" height="200" frameborder="0"></iframe>
+file:///home/ragh/Pictures/Screenshots/Screenshot%20from%202024-12-28%2014-19-26.png
