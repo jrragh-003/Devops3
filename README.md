@@ -7,6 +7,11 @@ In order to run :
 API Testing : 
 ```curl -X POST http://127.0.0.1:5001/styleTransfer -F "image=@test.jpg" --output styled_image.jpg ```
 
+Docker Images : 
+
+![Screenshot from 2024-12-28 14-39-50](https://github.com/user-attachments/assets/fee3330d-061d-4a96-9dc4-f40997e0248c)
+
+
 
 
 Grafana Readings
