@@ -1,3 +1,14 @@
+In order to pull the image : 
+``` docker pull urmsandeep/ai-artistic-style-service``` 
+
+In order to run : 
+``` docker run -d -p 5001:5001 urmsandeep/ai-artistic-style-service ```
+
+API Testing : 
+```curl -X POST http://127.0.0.1:5001/styleTransfer -F "image=@test.jpg" --output styled_image.jpg ```
+
+
+
 Grafana Readings
 ![Screenshot from 2024-12-28 14-19-26](https://github.com/user-attachments/assets/468e4b28-96ee-4b01-86ca-7708c604b7e1)
 
