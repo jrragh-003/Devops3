@@ -4,3 +4,7 @@ Grafana Readings
 
 Prometheus Readings
 ![Screenshot from 2024-12-28 14-22-00](https://github.com/user-attachments/assets/3342af21-ad10-472d-ad38-4d21bcfd3faf)
+
+
+Jenkins Final Output
+![Screenshot from 2024-12-28 14-24-10](https://github.com/user-attachments/assets/d17f5cc9-0e32-4bd8-b09d-c5d1462d362e)
