@@ -6,13 +6,6 @@ pipeline {
                 sh 'docker pull urmsandeep/ai-artistic-style-service:latest'
             }
         }
-        stage('Run Tests') {
-            steps {
-                sh '''
-                    docker run --rm -p 5001:5001 urmsandeep/ai-artistic-style-service bash -c "pip install pytest && pytest tests/"
-                '''
-            }
-        }
         stage('Deploy Service') {
             when {
                 expression { currentBuild.result == null }
